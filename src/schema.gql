@@ -2,12 +2,35 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type User {
-  id: String!
+input CreateUserInput {
+  confirmPassword: String!
+  email: String!
   first_name: String!
   last_name: String!
+  password: String!
+  username: String!
+}
+
+type LoginReturnType {
+  accessToken: String!
+  data: User!
+}
+
+type Mutation {
+  login(email: String!, password: String!): LoginReturnType!
+  register(createUserInput: CreateUserInput!): User!
 }
 
 type Query {
   findAll: [User!]!
+  findOne(email: String!, id: Float!): User!
+}
+
+type User {
+  email: String!
+  first_name: String!
+  id: Int!
+  last_name: String!
+  password: String!
+  username: String!
 }
