@@ -1,12 +1,25 @@
-import { Field, ObjectType } from '@nestjs/graphql';
-import { Column, Entity, PrimaryColumn } from 'typeorm';
+import { Field, Int, ObjectType } from '@nestjs/graphql';
+import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { hash } from 'bcrypt';
 
 @Entity({ name: 'Users' })
 @ObjectType()
 export class User {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn()
+  @Field(() => Int)
+  id: number;
+
+  @Column({ unique: true })
   @Field()
-  id: string;
+  email: string;
+
+  @Column({ unique: true })
+  @Field()
+  username: string;
+
+  @Column()
+  @Field()
+  password: string;
 
   @Column()
   @Field()
@@ -15,4 +28,9 @@ export class User {
   @Column()
   @Field()
   last_name: string;
+
+  @BeforeInsert()
+  async hashPassword() {
+    this.password = await hash(this.password, Number(process.env.HASH_SALT));
+  }
 }
