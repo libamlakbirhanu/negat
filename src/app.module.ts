@@ -6,6 +6,8 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
 // import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
+import { PageModule } from './page/page.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -24,9 +26,13 @@ import { join } from 'path';
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
-      // playground: true,
+      sortSchema: true,
+      playground: true,
       // plugins: [ApolloServerPluginLandingPageLocalDefault()],
     }),
+    ConfigModule.forRoot({ isGlobal: true }),
+    PageModule,
+    AuthModule,
   ],
 })
 export class AppModule {}
