@@ -3,6 +3,7 @@ import { CreateUserInput } from './dto/create-user.input';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { Repository } from 'typeorm';
+import { UserUpdateInput } from './dto/update-user.input';
 
 @Injectable()
 export class UsersService {
@@ -23,5 +24,43 @@ export class UsersService {
 
   async findOne({ id, email }: { id?: number; email?: string }): Promise<User> {
     return this.usersRepository.findOneBy(id ? { id } : { email });
+  }
+
+  async updateUser(
+    {
+      first_name,
+      avatar_id,
+      gender,
+      interested,
+      user_name,
+      going,
+      last_name,
+      friends,
+      category_sub,
+    }: UserUpdateInput,
+    authenticatedUser: User,
+  ): Promise<User> {
+    const user = await this.usersRepository.findOneBy({
+      id: authenticatedUser.id,
+    });
+
+    if (!user) {
+      throw new Error('User not found');
+    }
+
+    Object.assign(user, {
+      first_name,
+      avatar_id,
+      gender,
+      interested,
+      user_name,
+      going,
+      last_name,
+      friends,
+      category_sub,
+    });
+    await this.usersRepository.save(user);
+
+    return user;
   }
 }

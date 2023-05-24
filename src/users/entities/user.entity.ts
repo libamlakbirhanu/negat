@@ -15,7 +15,7 @@ export class User {
 
   @Column({ unique: true })
   @Field()
-  username: string;
+  user_name: string;
 
   @Column()
   @Field()
@@ -28,6 +28,30 @@ export class User {
   @Column()
   @Field()
   last_name: string;
+
+  @Column()
+  @Field()
+  gender: string;
+
+  @Column()
+  @Field()
+  friends: string[];
+
+  @Column()
+  @Field()
+  going: string[];
+
+  @Column()
+  @Field()
+  interested: string[];
+
+  @Column()
+  @Field()
+  category_sub: string[];
+
+  @Column()
+  @Field()
+  avatar_id: string;
 
   @BeforeInsert()
   async hashPassword() {
