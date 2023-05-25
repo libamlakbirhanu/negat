@@ -33,20 +33,20 @@ export class User {
   @Field()
   gender: string;
 
-  @Column()
-  @Field()
+  @Column('simple-array')
+  @Field(() => [String])
   friends: string[];
 
-  @Column()
-  @Field()
+  @Column('simple-array')
+  @Field(() => [String])
   going: string[];
 
-  @Column()
-  @Field()
+  @Column('simple-array')
+  @Field(() => [String])
   interested: string[];
 
-  @Column()
-  @Field()
+  @Column('simple-array')
+  @Field(() => [String])
   category_sub: string[];
 
   @Column()
