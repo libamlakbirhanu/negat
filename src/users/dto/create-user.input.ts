@@ -5,6 +5,8 @@ import {
   IsEmail,
   MinLength,
   Matches,
+  IsArray,
+  ArrayNotEmpty,
 } from 'class-validator';
 
 @InputType()
@@ -39,10 +41,43 @@ export class CreateUserInput {
   @Field()
   @IsString()
   @IsNotEmpty()
-  username: string;
+  user_name: string;
 
   @Field()
   @IsEmail()
   @IsNotEmpty()
   email: string;
+
+  
+  @Field()
+  @IsString()
+  gender: string;
+
+  @Field(() => [String])
+  @IsArray()
+  @ArrayNotEmpty()
+  @IsString({ each: true })
+  friends: string[];
+
+  @Field(() => [String])
+  @IsArray()
+  @ArrayNotEmpty()
+  @IsString({ each: true })
+  going: string[];
+
+  @Field(() => [String])
+  @IsArray()
+  @ArrayNotEmpty()
+  @IsString({ each: true })
+  interested: string[];
+
+  @Field()
+  @IsString()
+  avatar_id: string;
+
+  @Field(() => [String])
+  @IsArray()
+  @ArrayNotEmpty()
+  @IsString({ each: true })
+  category_sub: string[];
 }

@@ -3,12 +3,18 @@
 # ------------------------------------------------------
 
 input CreateUserInput {
+  avatar_id: String!
+  category_sub: [String!]!
   confirmPassword: String!
   email: String!
   first_name: String!
+  friends: [String!]!
+  gender: String!
+  going: [String!]!
+  interested: [String!]!
   last_name: String!
   password: String!
-  username: String!
+  user_name: String!
 }
 
 type LoginReturnType {
@@ -27,10 +33,16 @@ type Query {
 }
 
 type User {
+  avatar_id: String!
+  category_sub: [String!]!
   email: String!
   first_name: String!
+  friends: [String!]!
+  gender: String!
+  going: [String!]!
   id: Int!
+  interested: [String!]!
   last_name: String!
   password: String!
-  username: String!
+  user_name: String!
 }
