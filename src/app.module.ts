@@ -20,7 +20,7 @@ import { AuthModule } from './auth/auth.module';
       username: process.env.MY_SQL_USERNAME,
       password: process.env.MY_SQL_PASSWORD,
       database: process.env.MY_SQL_DATABASE,
-      synchronize: true,
+      synchronize: false,
     }),
     UsersModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({

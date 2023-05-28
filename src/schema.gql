@@ -6,9 +6,10 @@ input CreateUserInput {
   confirmPassword: String!
   email: String!
   first_name: String!
+  gender: String!
   last_name: String!
   password: String!
-  username: String!
+  user_name: String!
 }
 
 type LoginReturnType {
@@ -19,6 +20,7 @@ type LoginReturnType {
 type Mutation {
   login(email: String!, password: String!): LoginReturnType!
   register(createUserInput: CreateUserInput!): User!
+  updateUser(updateUserInput: UserUpdateInput!): User!
 }
 
 type Query {
@@ -27,10 +29,28 @@ type Query {
 }
 
 type User {
+  avatar_id: String
+  category_sub: [String!]!
   email: String!
   first_name: String!
+  friends: [String!]!
+  gender: String!
+  going: [String!]!
   id: Int!
+  interested: [String!]!
   last_name: String!
   password: String!
-  username: String!
+  user_name: String!
+}
+
+input UserUpdateInput {
+  avatar_id: String
+  category_sub: [String!]
+  first_name: String
+  friends: [String!]
+  gender: String
+  going: [String!]
+  interested: [String!]
+  last_name: String
+  user_name: String
 }

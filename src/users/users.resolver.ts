@@ -28,11 +28,11 @@ export class UsersResolver {
   // mutation resolvers
   @Mutation(() => User)
   @UseGuards(JwtAuthGuard)
-  async register(
-    @Args('createUserInput') userUpdateInput: UserUpdateInput,
+  async updateUser(
+    @Args('updateUserInput') userUpdateInput: UserUpdateInput,
     @Context() context: any,
   ) {
-    const request = context.req();
+    const request = context.req;
     const authenticatedUser = request.user;
 
     const user = await this.usersService.updateUser(

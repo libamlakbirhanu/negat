@@ -48,19 +48,26 @@ export class UsersService {
       throw new Error('User not found');
     }
 
+    const newInterested = [...(interested || []), ...user.interested];
+    const newFriends = [...(friends || []), ...user.friends];
+    const newGoing = [...(going || []), ...user.going];
+    const newCategory = [...(category_sub || []), ...user.category_sub];
+
     Object.assign(user, {
       first_name,
       avatar_id,
       gender,
-      interested,
       user_name,
-      going,
       last_name,
-      friends,
-      category_sub,
+      interested: newInterested,
+      going: newGoing,
+      friends: newFriends,
+      category_sub: newCategory,
     });
     await this.usersRepository.save(user);
 
-    return user;
+    return this.usersRepository.findOneBy({
+      id: authenticatedUser.id,
+    });
   }
 }

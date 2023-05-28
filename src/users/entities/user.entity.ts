@@ -35,22 +35,22 @@ export class User {
 
   @Column('simple-array')
   @Field(() => [String])
-  friends: string[];
+  friends: string[] = [];
 
   @Column('simple-array')
   @Field(() => [String])
-  going: string[];
+  going: string[] = [];
 
   @Column('simple-array')
   @Field(() => [String])
-  interested: string[];
+  interested: string[] = [];
 
   @Column('simple-array')
   @Field(() => [String])
-  category_sub: string[];
+  category_sub: string[] = [];
 
-  @Column()
-  @Field()
+  @Column({ nullable: true })
+  @Field({ nullable: true })
   avatar_id: string;
 
   @BeforeInsert()
