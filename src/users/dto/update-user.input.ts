@@ -1,5 +1,5 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { IsString } from 'class-validator';
+import { IsString, IsArray, ArrayNotEmpty } from 'class-validator';
 
 @InputType()
 export class UserUpdateInput {
@@ -20,15 +20,15 @@ export class UserUpdateInput {
   gender: string;
 
   @Field(() => [String], { nullable: true })
-  // @IsString()
+  @IsArray()
   friends: string[];
 
   @Field(() => [String], { nullable: true })
-  // @IsString()
+  @IsArray()
   going: string[];
 
   @Field(() => [String], { nullable: true })
-  // @IsString()
+  @IsArray()
   interested: string[];
 
   @Field({ nullable: true })
@@ -36,6 +36,6 @@ export class UserUpdateInput {
   avatar_id: string;
 
   @Field(() => [String], { nullable: true })
-  // @IsString()
+  @IsArray()
   category_sub: string[];
 }
